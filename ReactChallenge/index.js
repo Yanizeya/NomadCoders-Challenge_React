@@ -1,27 +1,33 @@
+
 class ObjectUtilities {
-    mergeObjects(objA, objB){
+    
+    static mergeObjects(objA, objB){
         return {...objA, ...objB};
     }
 
-    removePassword(obj){
-        let passObj = obj.password = "";
-        return passObj;
+    static removePassword(obj){
+        let {password, ...rest} = obj;
+        return rest;
     }
-    freezeObj(obj){
+    
+    static freezeObj(obj){
+        'use strict';
         let freezeObj = Object.freeze(obj);
         return freezeObj;
     }
-    getOnlyValues(obj){
+
+    static getOnlyValues(obj){
         let arr = [];
-        for(keyName in obj){
-            arr += obj[keyName];
+        for(let keyName in obj){
+            arr = [...arr,obj[keyName]];
         }
         return arr;
     }
-    getOnlyProperties(obj){
+
+    static getOnlyProperties(obj){
         let arr = [];
-        for(keyName in obj){
-            arr += keyName;
+        for(let keyName in obj){
+            arr = [...arr,keyName];
         }
         return arr;
     }
